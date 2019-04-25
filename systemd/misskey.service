@@ -1,0 +1,18 @@
+[Unit]
+Description=Misskey daemon
+
+[Service]
+Type=simple
+User=misskey
+WorkingDirectory=/home/misskey/live
+Environment="NODE_ENV=production"
+Environment="NODE_VERSION=11"
+ExecStart=/home/misskey/.nvm/nvm-exec npm start
+TimeoutSec=15
+Restart=always
+SyslogIdentifier=misskey
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
