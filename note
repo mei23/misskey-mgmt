@@ -1,0 +1,15 @@
+#!/bin/bash
+
+SERVICE_DOMAIN=$(cat ~/.service-domain)
+
+NOTE_MSG="{\
+ \"i\": \"$(cat ~/.access-token)\",\
+ \"visibility\": \"public\",\
+ \"text\": \"$@\"\
+}"
+
+curl -X POST \
+     -d "$NOTE_MSG" \
+     -H "Content-Type: application/json" \
+     -sS https://$SERVICE_DOMAIN/api/notes/create
+
