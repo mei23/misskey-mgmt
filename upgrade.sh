@@ -20,7 +20,7 @@ npm install -g npm
 npm install -g ts-node web-push
 npm run clean
 npm install
-NODE_ENV=production npm run build
+npm run build
 sudo systemctl stop misskey.service
 ts-node ./node_modules/typeorm/cli.js migration:run
 sudo systemctl start misskey.service
