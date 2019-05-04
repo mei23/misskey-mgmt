@@ -2,6 +2,10 @@
 
 export NODE_ENV=production
 pushd /home/misskey/live > /dev/null
+. ~/.nvm/nvm.sh
+nvm install $(cat .node-version)
+nvm use $(cat .node-version)
+
 npm run build
 sudo systemctl stop misskey.service
 ts-node ./node_modules/typeorm/cli.js migration:run
