@@ -23,7 +23,7 @@ npm run clean
 npm install
 npm run build
 sudo systemctl stop misskey.service
-ts-node ./node_modules/typeorm/cli.js migration:run
+npm run migrate
 sudo systemctl start misskey.service
 popd > /dev/null
 
