@@ -6,9 +6,9 @@ pushd /home/misskey/live > /dev/null
 nvm install $(cat .node-version)
 nvm use $(cat .node-version)
 
-npx yarn build
+npm run build
 sudo systemctl stop misskey.service
-npx yarn migrate
+npm run migrate
 sudo systemctl start misskey.service
 popd > /dev/null
 
