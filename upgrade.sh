@@ -19,8 +19,8 @@ MSKY_UPGRADE_VERSION=$(git describe --tags --exact-match || echo "$(git describe
 
 npm install -g npm
 npm install yarn
-npm run clean
 npx yarn install
+npm run clean
 npm run build
 sudo systemctl stop misskey.service
 npm run migrate
