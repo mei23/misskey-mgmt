@@ -18,7 +18,7 @@ MSKY_UPGRADE_VERSION=$(git describe --tags --exact-match || echo "$(git describe
 /home/misskey/note 【メンテナンス告知】当インスタンスは、今から約10分間 Misskey $MSKY_UPGRADE_VERSION へのアップデートを行います。その間、アクセスが円滑でないことがありますので、ご了承お願いいたします。
 
 npm install -g npm
-npx yarn install
+npx yarn install --prod=false
 npm run clean
 npm run build
 sudo systemctl stop misskey.service
