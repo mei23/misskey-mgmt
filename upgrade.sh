@@ -16,7 +16,7 @@ nvm use $(cat .node-version)
 GIT_CURRENT_COMMIT=$(git rev-parse HEAD)
 MSKY_UPGRADE_VERSION=$(git describe --tags --exact-match || echo "$(git describe --tags $(git rev-list --tags --max-count=1)) (${GIT_CURRENT_COMMIT:0:8})")
 /home/misskey/note 【メンテナンス告知】当インスタンスは、今から約10分間 Misskey $MSKY_UPGRADE_VERSION へのアップデートを行います。その間、アクセスが円滑でないことがありますので、ご了承お願いいたします。
-git describe --tags --exact-match || sed -i -re '0,/"version":\s+".+"/ s/("version":\s+".+)"/\1-'"${GIT_CURRENT_COMMIT:0:8}"'"/' package.json
+git describe --tags --exact-match || sed -i -re '0,/"version":\s+".+"/ s/("version":\s+".+)"/\1-'"${SERVICE_BRANCH}"'-'"${GIT_CURRENT_COMMIT:0:8}"'"/' package.json
 
 npm install -g npm
 npx yarn install --prod=false
