@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVICE_BRANCH_ORIGIN=$(cat ~/.service-branch)
+SERVICE_BRANCH_ORIGIN=$(cat ~/.service-branch-origin)
 SERVICE_BRANCH=$(cat ~/.service-branch)
 
 export NODE_ENV=production
