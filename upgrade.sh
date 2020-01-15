@@ -1,6 +1,5 @@
 #!/bin/bash
 
-SERVICE_BRANCH_ORIGIN=$(cat ~/.service-branch-origin)
 SERVICE_BRANCH=$(cat ~/.service-branch)
 
 export NODE_ENV=production
@@ -15,9 +14,9 @@ nvm install $(cat .node-version)
 nvm use $(cat .node-version)
 
 GIT_CURRENT_COMMIT=$(git rev-parse HEAD)
-MSKY_UPGRADE_VERSION=$(git describe --tags --exact-match || echo "$(git describe --tags $(git rev-list --tags --max-count=1)) (${SERVICE_BRANCH_ORIGIN} @ ${GIT_CURRENT_COMMIT:0:8})")
+MSKY_UPGRADE_VERSION=$(git describe --tags --exact-match || echo "$(grep 'version' package.json | awk -F\" '{ print $4 }') (${GIT_CURRENT_COMMIT:0:8})")
 /home/misskey/note 【メンテナンス告知】当インスタンスは、今から約10分間 Misskey $MSKY_UPGRADE_VERSION へのアップデートを行います。その間、アクセスが円滑でないことがありますので、ご了承お願いいたします。
-git describe --tags --exact-match || sed -i -re '0,/"version":\s+".+"/ s/("version":\s+".+)"/\1-'"${SERVICE_BRANCH_ORIGIN}"'-'"${GIT_CURRENT_COMMIT:0:8}"'"/' package.json
+git describe --tags --exact-match || sed -i -re '0,/"version":\s+".+"/ s/("version":\s+".+)"/\1-'"${GIT_CURRENT_COMMIT:0:8}"'"/' package.json
 
 npm install -g npm
 npx yarn install --prod=false
@@ -33,4 +32,3 @@ sudo systemctl status --full --no-pager misskey.service
 /home/misskey/wait-for-boot.sh
 
 /home/misskey/note 【メンテナンス終了】Misskey $MSKY_UPGRADE_VERSION へのアップデートが完了しました。
-
