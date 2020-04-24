@@ -6,7 +6,7 @@ Type=simple
 User=misskey
 WorkingDirectory=/home/misskey/live
 Environment="NODE_ENV=production"
-Environment="NODE_VERSION=12"
+Environment="NODE_VERSION=14"
 ExecStart=/home/misskey/.nvm/nvm-exec npm start
 TimeoutSec=15
 Restart=always
