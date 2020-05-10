@@ -9,7 +9,7 @@ git checkout $SERVICE_BRANCH > /dev/null 2>&1
 git status | grep "up to date"
 if [[ $? -eq 0 ]]; then exit 0; fi
 git reset --hard origin/$SERVICE_BRANCH
-echo "v14" > .node-version
+if [ -f ~/.node-version ]; then cp -vf ~/.node-version .node-version; fi
 . ~/.nvm/nvm.sh
 nvm install $(cat .node-version)
 nvm use $(cat .node-version)

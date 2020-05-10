@@ -2,6 +2,7 @@
 
 export NODE_ENV=production
 pushd /home/misskey/live > /dev/null
+if [ -f ~/.node-version ]; then cp -vf ~/.node-version .node-version; fi
 . ~/.nvm/nvm.sh
 nvm install $(cat .node-version)
 nvm use $(cat .node-version)
